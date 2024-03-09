@@ -2,6 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 
 // Connect to MongoDB
 const conurl = "mongodb+srv://rohan:kankimagi@cluster0.ecwot4i.mongodb.net/blockchainintern?retryWrites=true&w=majority&appName=Cluster0"
@@ -20,6 +22,7 @@ const Transaction = mongoose.model('Transaction', transactionSchema);
 // Initialize the Express app
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 // Create a POST API to add a new transaction
 app.post('/transaction', async (req, res) => {
