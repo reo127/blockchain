@@ -56,22 +56,7 @@ const Welcome = () => {
             </button>
           )}
 
-          <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
-            <div className={`rounded-tl-2xl ${companyCommonStyles}`}>
-              Reliability
-            </div>
-            <div className={companyCommonStyles}>Security</div>
-            <div className={`sm:rounded-tr-2xl ${companyCommonStyles}`}>
-              INR
-            </div>
-            <div className={`sm:rounded-bl-2xl ${companyCommonStyles}`}>
-              Web 3
-            </div>
-            <div className={companyCommonStyles}>Low Fees</div>
-            <div className={`rounded-br-2xl ${companyCommonStyles}`}>
-              CashLess
-            </div>
-          </div>
+          
         </div>
 
         <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
