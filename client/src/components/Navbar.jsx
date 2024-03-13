@@ -20,6 +20,10 @@ const Navbar = () => {
         {/* {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
           <NavBarItem key={item + index} title={item} />
         ))} */}
+      <a href="https://dappradar.com/rankings/protocol/ethereum/category/marketplaces" target="_blank"><NavBarItem title="Market" /></a>
+        <a href="https://crypto.com/exchange" target="_black"><NavBarItem title="Exchange" /></a>
+        <a href="https://learn.metamask.io/overview" target="_blank"><NavBarItem title="Tutorials" /></a>
+        <a href="https://metamask.io/" target="_blank"><NavBarItem title="Wallets" /></a>
         <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
           Login
         </li>
