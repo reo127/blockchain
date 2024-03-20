@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
+import axios from "axios";
 
 import { TransactionContext } from "../context/TransactionContext";
 import { shortenAddress } from "../utils/shortenAddress";
@@ -21,16 +22,27 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const Welcome = () => {
+  const [fromAddress, setFromAddress] = useState("")
+  const [toAddress, setToAddress] = useState("")
+  const [message, setMessage] = useState("")
+  const [amount, setAmount] = useState()
+
   const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
 
   const handleSubmit = (e) => {
-    const { addressTo, amount, keyword, message } = formData;
+
+    // const { addressTo, amount, keyword, message } = formData;
 
     e.preventDefault();
 
-    if (!addressTo || !amount || !keyword || !message) return;
+    // if (!addressTo || !amount || !keyword || !message) return;
 
-    sendTransaction();
+    // send transaction
+    console.log(toAddress);
+    console.log(message);
+    console.log(amount);
+    // console.log(shortenAddress(currentAccount));
+    console.log(currentAccount);
   };
 
   return (
@@ -79,9 +91,9 @@ const Welcome = () => {
             </div>
           </div>
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-            <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} />
-            <Input placeholder="Amount" name="amount" type="number" handleChange={handleChange} />
-            <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
+            <input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} value={toAddress} onChange={(e) => setToAddress(e.target.value)} className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"  />
+            <input placeholder="Amount" name="amount" type="number" handleChange={handleChange} value={amount} onChange={(e) => setAmount(e.target.value)} className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" />
+            <input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} value={message} onChange={(e) => setMessage(e.target.value)} className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" />
 
             <div className="h-[1px] w-full bg-gray-400 my-2" />
 
