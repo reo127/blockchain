@@ -29,20 +29,28 @@ const Welcome = () => {
 
   const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
 
-  const handleSubmit = (e) => {
-
-    // const { addressTo, amount, keyword, message } = formData;
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!currentAccount || !toAddress || !message || !amount) return;
 
-    // if (!addressTo || !amount || !keyword || !message) return;
+    try {
+      console.log(toAddress);
+      console.log(message);
+      console.log(amount);
+      console.log(currentAccount);
+      const res = await axios.post("http://localhost:8000/transaction", {
+        address: currentAccount,
+        toAddress: toAddress,
+        message: message,
+        amount: amount
+      })
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+      console.log(err.message);
+    }
+ 
 
-    // send transaction
-    console.log(toAddress);
-    console.log(message);
-    console.log(amount);
-    // console.log(shortenAddress(currentAccount));
-    console.log(currentAccount);
   };
 
   return (
