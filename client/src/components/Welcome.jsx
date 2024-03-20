@@ -34,16 +34,16 @@ const Welcome = () => {
     if(!currentAccount || !toAddress || !message || !amount) return;
 
     try {
-      console.log(toAddress);
-      console.log(message);
-      console.log(amount);
-      console.log(currentAccount);
       const res = await axios.post("http://localhost:8000/transaction", {
         address: currentAccount,
         toAddress: toAddress,
         message: message,
         amount: amount
       })
+      setToAddress("")
+      setFromAddress("")
+      setMessage("")
+      setAmount("")
       console.log(res);
     } catch (err) {
       console.log(err);
