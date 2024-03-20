@@ -1,11 +1,12 @@
 
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require('express'); 
+const mongoose = require('mongoose'); 
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 
 // Connect to MongoDB
+// const conurl = "mongodb+srv://admin:admin17455@cluster0.irewtx1.mongodb.net/blockchain?retryWrites=true&w=majority&appName=Cluster0"
 const conurl = "mongodb+srv://rohan:kankimagi@cluster0.ecwot4i.mongodb.net/blockchainintern?retryWrites=true&w=majority&appName=Cluster0"
 mongoose.connect(conurl, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log("connected")).catch((err) => console.log("Error, Not connected"));
 
