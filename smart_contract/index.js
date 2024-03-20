@@ -13,6 +13,7 @@ mongoose.connect(conurl, { useNewUrlParser: true, useUnifiedTopology: true }).th
 // Define the schema for the database
 const transactionSchema = new mongoose.Schema({
   address: String,
+  toAddress: String,
   amount: Number,
   message: String
 });
@@ -27,8 +28,8 @@ app.use(cors());
 
 // Create a POST API to add a new transaction
 app.post('/transaction', async (req, res) => {
-  const { address, amount, message } = req.body;
-  const newTransaction = new Transaction({ address, amount, message });
+  const { address, toAddress, amount, message } = req.body;
+  const newTransaction = new Transaction({ address, toAddress, amount, message });
   await newTransaction.save();
   res.status(201).send(newTransaction);
 });
