@@ -15,7 +15,8 @@ const transactionSchema = new mongoose.Schema({
   address: String,
   toAddress: String,
   amount: Number,
-  message: String
+  message: String,
+  datetime: String
 });
 
 // Create a model for the schema
@@ -29,7 +30,9 @@ app.use(cors());
 // Create a POST API to add a new transaction
 app.post('/transaction', async (req, res) => {
   const { address, toAddress, amount, message } = req.body;
-  const newTransaction = new Transaction({ address, toAddress, amount, message });
+  let newDate = new Date();
+  let datetime = newDate.getDate() + "/" + (newDate.getMonth() + 1) + "/" + newDate.getFullYear() + ", " + newDate.getHours() + ":" + newDate.getMinutes() + ":" + newDate.getSeconds() + " " + (newDate.getHours() >= 12 ? "PM" : "AM");
+  const newTransaction = new Transaction({ address, toAddress, amount, message, datetime });
   await newTransaction.save();
   res.status(201).send(newTransaction);
 });
