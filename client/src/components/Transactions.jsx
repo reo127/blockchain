@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { TransactionContext } from "../context/TransactionContext";
 
+
 import useFetch from "../hooks/useFetch";
 import dummyData from "../utils/dummyData";
 import { shortenAddress } from "../utils/shortenAddress";
@@ -49,12 +50,12 @@ const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword,
 };
 
 const Transactions = () => {
-  const { transactions, currentAccount } = useContext(TransactionContext);
+  const { transactions, currentAccount, count } = useContext(TransactionContext);
   const [transactionsdata, setTransactionsData] = useState([])
   useEffect(async() => {
     const data = await axios.get("http://localhost:8000/transactions");
     setTransactionsData(data.data);
-  }, [])
+  }, [count])
   
   console.log(transactionsdata);
 

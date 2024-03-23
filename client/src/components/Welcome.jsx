@@ -5,6 +5,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import axios from "axios";
 
 import { TransactionContext } from "../context/TransactionContext";
+// import { setCount } from "../context/TransactionContext"
 import { shortenAddress } from "../utils/shortenAddress";
 import { Loader } from ".";
 
@@ -27,7 +28,7 @@ const Welcome = () => {
   const [message, setMessage] = useState("")
   const [amount, setAmount] = useState()
 
-  const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
+  const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading, setCount, count } = useContext(TransactionContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,11 +41,12 @@ const Welcome = () => {
         message: message,
         amount: amount
       })
-      setToAddress("")
-      setFromAddress("")
-      setMessage("")
-      setAmount("")
+      setToAddress("");
+      setFromAddress("");
+      setMessage("");
+      setAmount("");
       console.log(res);
+      setCount(count + 1);
     } catch (err) {
       console.log(err);
       console.log(err.message);

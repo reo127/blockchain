@@ -145,6 +145,8 @@ export const TransactionsProvider = ({ children }) => {
     checkIfTransactionsExists();
   }, [transactionCount]);
 
+  const [count, setCount] = useState(0)
+
   return (
     <TransactionContext.Provider
       value={{
@@ -156,6 +158,8 @@ export const TransactionsProvider = ({ children }) => {
         sendTransaction,
         handleChange,
         formData,
+        count, 
+        setCount
       }}
     >
       {children}
