@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from 'axios';
 
 import { TransactionContext } from "../context/TransactionContext";
 
@@ -49,6 +50,23 @@ const TransactionsCard = ({ addressTo, addressFrom, timestamp, message, keyword,
 
 const Transactions = () => {
   const { transactions, currentAccount } = useContext(TransactionContext);
+  const [transactionsdata, setTransactionsData] = useState([])
+  useEffect(async() => {
+    const data = await axios.get("http://localhost:8000/transactions");
+    setTransactionsData(data.data);
+  }, [])
+  
+  console.log(transactionsdata);
+
+  const d = {
+    _id: "65fd7dc7a718de958a3d6bdf",
+    address: "809fsd09f8sfds",
+    toAddress: "toaddress",
+    amount: 10,
+    message: "money sended, pleace check",
+    datetime: "22/3/2024, 18:17:3 PM",
+    __v: 0
+}
 
   return (
     <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
@@ -64,8 +82,8 @@ const Transactions = () => {
         )}
 
         <div className="flex flex-wrap justify-center items-center mt-10">
-          {[...dummyData, ...transactions].reverse().map((transaction, i) => (
-            <TransactionsCard key={i} {...transaction} />
+          {transactionsdata.reverse().map((transaction, i) => (
+            <TransactionsCard key={i} addressFrom={transaction.address} addressTo={transaction.toAddress} amount={transaction.amount} message={transaction.message} timestamp={transaction.datetime} />
           ))}
         </div>
       </div>
